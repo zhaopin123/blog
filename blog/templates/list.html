@@ -1,0 +1,40 @@
+{% extends 'base_main.html' %}
+
+{% block about %}
+{% endblock %}
+
+
+{% block content %}
+
+    {% for art in arts %}
+      <li><i><a href="/"><img src="/media/{{ art.icon }}"></a></i>
+
+        <h3><a href="{% url 'leading:info' art.id %}">{{ art.title }}</a></h3>
+
+        <p><a href="{% url 'leading:info' art.id %}"> {{ art.data|safe }}</a></p>
+
+
+      </li>
+    {% endfor %}
+
+    <div class="pagelist">
+      {% if arts.has_previous %}
+
+        {% if act1 %}<a  href="{% url 'leading:list' %}?page={{ arts.previous_page_number }}">{% else %}
+            <a  href="{% url 'leading:search' %}?page={{ arts.previous_page_number }}">{% endif %}<<上一页 </a>
+      {% endif %}
+
+      {% for i in arts.paginator.page_range %}
+
+        {% if act1 %}<a href="{% url 'leading:list' %}?page={{ i }}">{{ i }}</a>{% else %}
+        <a href="{% url 'leading:search' %}?page={{ i }}">{{ i }}</a>{% endif %}
+      {% endfor %}
+
+      {% if arts.has_next %}
+
+        {% if act1 %}<a href="{% url 'leading:list' %}?page={{ arts.next_page_number }}" >{% else %}
+               <a href="{% url 'leading:search' %}?page={{ arts.next_page_number }}" >{% endif %}  下一页>> </a>
+      {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    {% block meta %}
+    {% endblock %}
+
+    {% block css %}
+    {% endblock %}
+
+    {% block js1 %}
+    {% endblock %}
+</head>
+<body>
+    {% block header %}
+    {% endblock %}
+<article>
+  <aside class="l_box">
+    {% block about %}
+
+    {% endblock %}
+
+      {% block search %}
+
+    {% endblock %}
+
+      {% block fenlei %}
+
+    {% endblock %}
+
+      {% block tuijian %}
+
+    {% endblock %}
+
+      {% block tuijian2 %}
+
+    {% endblock %}
+
+      {% block cloud %}
+
+    {% endblock %}
+
+      {% block guanzhu %}
+
+    {% endblock %}
+  </aside>
+  <main class="r_box">
+    {% block content %}
+    {% endblock %}
+  </main>
+</article>
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>

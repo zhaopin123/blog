@@ -1,0 +1,54 @@
+{% extends 'base_main.html' %}
+
+{% block about %}
+{% endblock %}
+
+{% block tuijian2 %}
+{% endblock %}
+
+{% block content %}
+<div class="gbook">
+  {% for gbook in gbooks %}
+      <div class="fb">
+
+        <ul>
+          <p class="fbtime"><span> {{ gbook.time }} </span> {{ gbook.o_name }}</p>
+          <p class="fbinfo">{{ gbook.cont }}</p>
+        </ul>
+      </div>
+  {% endfor %}
+
+      <div class="gbox">
+        <div class="pagelist">
+      {% if gbooks.has_previous %}
+        <a aria-label="Previous" href="{% url 'leading:gbook' %}?page={{ gbooks.previous_page_number }}"> <<上一页 </a>
+      {% endif %}
+
+      {% for i in gbooks.paginator.page_range %}
+        <a href="{% url 'leading:gbook' %}?page={{ i }}">{{ i }}</a>
+      {% endfor %}
+
+      {% if gbooks.has_next %}
+        <a href="{% url 'leading:gbook' %}?page={{ gbooks.next_page_number }}" aria-label="Next"> 下一页>></a>
+      {% endif %}
+    </div>
+        <form action="" method="post" name="form1" id="form1">
+          {% csrf_token %}
+          <p> <strong>来说点儿什么吧...</strong></p>
+          <p><span> 您的姓名:</span>
+            <input name="name" type="text" id="name">
+            *</p>
+          <p><span>联系邮箱:</span>
+            <input name="email" type="text" id="email">
+            *</p>
+          <p><span class="tnr">留言内容:</span>
+            <textarea name="lytext" cols="60" rows="12" id="lytext"></textarea>
+          </p>
+          <p>
+            <input type="submit" name="Submit3" value="提交">
+            <input name="enews" type="hidden" id="enews" value="AddGbook">
+          </p>
+        </form>
+      </div>
+    </div>
+  {% endblock %}
